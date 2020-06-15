@@ -1,0 +1,43 @@
+#chess-board {
+  height: 225px;
+  width: 225px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+#numbers {
+  width: 25px;
+  display: inline-block;
+  height: 200px;
+}
+
+#letters {
+  width: 200px;
+  height: 25px;
+  margin-left: 25px;
+}
+
+.label {
+  width: 25px;
+  height: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+table#board-inner {
+  border-collapse: collapse;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+}
+tr {
+  height: 25px;
+  width: 200px;
+}
+td {
+  width: 25px;
+  background-color: #eee;
+  text-align: center;
+}
