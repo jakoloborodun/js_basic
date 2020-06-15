@@ -3,15 +3,17 @@
 const settings = {
   rowCount: 8,
   colCount: 8,
-  whiteColor: '#e8e8e8',
-  blackColor: '#909090',
+  whiteBgColor: '#e8e8e8',
+  blackBgColor: '#909090',
+  whiteColor: '#fff',
+  blackColor: '#000',
   letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
   numbers: ['1', '2', '3', '4', '5', '6', '7', '8'],
   figures: {
-    0 : ['Л', 'К', 'С', 'Ф', 'Кр', 'С', 'К', 'Л'],
-    1 : ['п', 'п', 'п', 'п', 'п', 'п', 'п', 'п'],
-    6 : ['п', 'п', 'п', 'п', 'п', 'п', 'п', 'п'],
-    7 : ['Л', 'К', 'С', 'Ф', 'Кр', 'С', 'К', 'Л'],
+    0 : ['fa-chess-rook', 'fa-chess-knight', 'fa-chess-bishop', 'fa-chess-queen', 'fa-chess-king', 'fa-chess-bishop', 'fa-chess-knight', 'fa-chess-rook'],
+    1 : ['fa-chess-pawn', 'fa-chess-pawn', 'fa-chess-pawn', 'fa-chess-pawn', 'fa-chess-pawn', 'fa-chess-pawn', 'fa-chess-pawn', 'fa-chess-pawn'],
+    6 : ['fa-chess-pawn', 'fa-chess-pawn', 'fa-chess-pawn', 'fa-chess-pawn', 'fa-chess-pawn', 'fa-chess-pawn', 'fa-chess-pawn', 'fa-chess-pawn'],
+    7 : ['fa-chess-rook', 'fa-chess-knight', 'fa-chess-bishop', 'fa-chess-queen', 'fa-chess-king', 'fa-chess-bishop', 'fa-chess-knight', 'fa-chess-rook'],
   }
 };
 
@@ -48,17 +50,20 @@ const board = {
         trElem.appendChild(cell);
 
         if (this.settings.figures[row] !== undefined) {
-          cell.innerText = this.settings.figures[row][col];
+          let figure = document.createElement('i');
+          figure.classList.add('fas');
+          figure.classList.add(this.settings.figures[row][col]);
+          cell.insertAdjacentElement('beforeend', figure);
 
           switch (row) {
             case 0:
             case 1:
-              cell.style.color = '#000';
+              cell.style.color = this.settings.blackColor;
               break;
 
             case 6:
             case 7:
-              cell.style.color = '#fff';
+              cell.style.color = this.settings.whiteColor;
               break;
           }
         }
@@ -70,14 +75,14 @@ const board = {
 
   render() {
     let change = false;
-    let cellColor = this.settings.whiteColor;
+    let cellColor = this.settings.whiteBgColor;
     this.cellElements.forEach((cell, index) => {
       change = index % 8 === 0 || index === 0;
 
       if (!change) {
-        cellColor = cellColor === this.settings.whiteColor
-            ? this.settings.blackColor
-            : this.settings.whiteColor;
+        cellColor = cellColor === this.settings.whiteBgColor
+            ? this.settings.blackBgColor
+            : this.settings.whiteBgColor;
       }
 
       cell.style.backgroundColor = cellColor;
@@ -103,15 +108,12 @@ const board = {
       numDiv.innerText = this.settings.numbers[key];
       numDiv.className = 'label';
 
-      // this.numbersContainer.appendChild(numDiv);
-
       this.numbersContainer.insertAdjacentElement('afterbegin', numDiv);
       this.lettersContainer.appendChild(letDiv);
     });
   },
 
 };
-
 
 function buildChessBoard() {
   board.build();

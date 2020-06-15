@@ -41,3 +41,7 @@ td {
   background-color: #eee;
   text-align: center;
 }
+/*Small shadow around the icons for contrast*/
+.fas {
+  text-shadow: 0 0 1px #000;
+}
