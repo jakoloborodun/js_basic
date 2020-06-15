@@ -32,11 +32,11 @@ table#board-inner {
   height: 200px;
   margin: auto;
 }
-tr {
+table#board-inner tr {
   height: 25px;
   width: 200px;
 }
-td {
+table#board-inner td {
   width: 25px;
   background-color: #eee;
   text-align: center;
